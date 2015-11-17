@@ -10,6 +10,31 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">		
 		<title>Streaming Demo</title>
 		
+		<script type=text/javascript>
+			
+			  $('button#btnoff').bind('click', function() {
+				alert("off");
+				$.ajax({
+					url: '/_btnoff', 
+					type: 'POST', 
+					complete: function(){
+						console.log('complete off')},
+					error: function(xhr, textStatus, thrownError){
+						console.log(thrownError);
+						console.log(obj); }
+				});
+				return false;
+				/* $.getJSON('/_add_numbers', {
+				  a: $('input[name="a"]').val(),
+				  b: $('input[name="b"]').val()
+				}, function(data) {
+				  $("#result").text(data.result);
+				});
+				return false;
+				*/  
+			});
+		</script>
+		
 	</head>
 	<body>
 		<nav class="navbar navbar-inverse">
@@ -30,8 +55,10 @@
 		<div class="container-fluid">
 			<h4>Video Streaming Demonstration</h4>
 			<div>
-				<img src="/static/img/1.jpg" width="350px" height="350px"/>
+				<img src="{{ url_for('video_feed') }}" />
+				<!-- <img src="" width="350px" height="350px"/> -->
 			</div>
+			<br>
 			<div>
 				<table>
 					<tr>
@@ -55,19 +82,28 @@
 								</tr>
 							</table>
 						</td>
-					
+						<td>&nbsp&nbsp</td>
 						<td>
 							<table>
 								<thead></thead>
 								<tbody>
 									<tr>
 										<td></td>
-										<td><button type="button" class="btn btn-round btn-primary btn-lg">A</button></td>
+										<td><button type="button" class="btn btn-round btn-primary btn-lg">LED</button></td>
 										<td></td>
 									</tr>
 									<tr>
 										<td><button type="button" class="btn btn-round btn-success btn-lg">B</button></td>
-										<td><button type="button" class="btn btn-round btn-default btn-lg">*</button></td>
+										<td>
+											<table> <tr>
+											<td valign="top"> <form action="" method="post" name="btnon">
+												<button type="submit" class="btn btn-round btn-default btn-sm" id="btnon">on</button>
+											</form> </td>
+											<td valign="top"> <form action="" method="post" name="btnoff">
+												<button type="submit" class="btn btn-round btn-default btn-sm" id="btnoff">off</button>
+											</form> </td>
+											</tr> </table>
+										</td>
 										<td><button type="button" class="btn btn-round btn-warning btn-lg">C</button></td>
 									</tr>
 									<tr>
