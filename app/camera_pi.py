@@ -4,11 +4,13 @@ import threading
 import picamera
 
 
+
 class Camera(object):
     thread = None  # background thread that reads frames from camera
     frame = None  # current frame is stored here by background thread
     last_access = 0  # time of last client access to the camera
-
+    init_complete = None
+	
     def initialize(self):
         if Camera.thread is None:
             # start background frame thread
@@ -21,14 +23,16 @@ class Camera(object):
 
     def get_frame(self):
         Camera.last_access = time.time()
-        self.initialize()
+        if Camera.init_complete is None:
+			self.initialize()
+			init_complete = 1
         return self.frame
 
     @classmethod
     def _thread(cls):
         with picamera.PiCamera() as camera:
             # camera setup
-            camera.resolution = (320, 240)
+            camera.resolution = (480, 360)
             camera.hflip = True
             camera.vflip = True
 
@@ -53,11 +57,6 @@ class Camera(object):
                     break
         cls.thread = None
 
-	def stream_start():
-		Camera.thread.start()
-		
-		while self.frame is None:
-			time.sleep(0)
-		
+	
 	def stream_stop():
-		Camera.thread.stop()
+		self.thread.stop()

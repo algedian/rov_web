@@ -5,6 +5,8 @@ from app import app
 
 from camera_pi import Camera
 
+
+
 @app.route('/', methods=['POST', 'GET'])
 def index():
 	return render_template('index.html', title='ROV control')
@@ -21,12 +23,3 @@ def video_feed():
     return Response(gen(Camera()),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
-@app.route('/_btnon')
-def btnon():
-	camera_pi.stream_start()
-	return False;
-	
-@app.route('/_btnoff')
-def btnoff():
-	camera_pi.stream_stop()
-	return render_template('index.html', title='ROV control')

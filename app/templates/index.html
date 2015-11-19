@@ -4,35 +4,33 @@
 		<link href="/static/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 		<link href="/static/css/custom.css" rel="stylesheet" type="text/css">
 		<script src="/static/js/jquery-1.11.3.min.js"></script>
+		<script src="/static/js/socket.io.js"></script>
 		<script src="/static/js/bootstrap.min.js"></script>
+		<script src="/static/js/myjs.js"></script>
 		
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">		
-		<title>Streaming Demo</title>
+		<title>ROV Controller</title>
 		
-		<script type=text/javascript>
-			
-			  $('button#btnoff').bind('click', function() {
-				alert("off");
-				$.ajax({
-					url: '/_btnoff', 
-					type: 'POST', 
-					complete: function(){
-						console.log('complete off')},
-					error: function(xhr, textStatus, thrownError){
-						console.log(thrownError);
-						console.log(obj); }
+		<script type="text/javascript" charset="utf-8">
+			/*
+			$(document).ready(function(){
+				namespace = '/btnclick';
+				
+				var socket = io.connect('http://' + document.domain + 
+				':' + location.port + namespace);
+				
+				socket.on('connect', function(){
+					socket.emit('my event', {data: 'I\'m connected!'});
 				});
-				return false;
-				/* $.getJSON('/_add_numbers', {
-				  a: $('input[name="a"]').val(),
-				  b: $('input[name="b"]').val()
-				}, function(data) {
-				  $("#result").text(data.result);
+				
+				$('form#btnoff').submit(fucntion(event){
+					alert('off');
+					//socket.emit('btn off event', );
+					return false;
 				});
-				return false;
-				*/  
-			});
+			});	
+			*/	    
 		</script>
 		
 	</head>
@@ -44,23 +42,18 @@
 				</div>
 				<div id="navbar" class="collapse navbar-collapse">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="#">Home</a></li>
-						<li><a href="#about">About</a></li>
-						<li><a href="#contact">Contact</a></li>
 					</ul>
 				</div>
 			</div>			  
 		</nav>
 		
 		<div class="container-fluid">
-			<h4>Video Streaming Demonstration</h4>
 			<div>
-				<img src="{{ url_for('video_feed') }}" />
-				<!-- <img src="" width="350px" height="350px"/> -->
+				<img src="/static/img/fiesta_spider.jpg" id="nemo" width="480px" height="360px" />				
 			</div>
 			<br>
 			<div>
-				<table>
+				<table width="480px">
 					<tr>
 						<td valign="top">
 							<table>
@@ -71,8 +64,8 @@
 								</tr>
 								<tr>
 									<td><button type="button" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-arrow-left"></span></button></td>
-									<td><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-cloud-upload"></span></button>
-										<button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-cloud-download"></span></button></td>
+									<td><button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-cloud-upload"></span></button>
+										<button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-cloud-download"></span></button></td>
 									<td><button type="button" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-arrow-right"></span></button></td>
 								</tr>
 								<tr>
@@ -82,33 +75,34 @@
 								</tr>
 							</table>
 						</td>
-						<td>&nbsp&nbsp</td>
-						<td>
+						<td>&nbsp&nbsp&nbsp&nbsp</td>
+						<td valign="top">
 							<table>
 								<thead></thead>
 								<tbody>
 									<tr>
 										<td></td>
-										<td><button type="button" class="btn btn-round btn-primary btn-lg">LED</button></td>
+										<td><button type="button" class="btn btn-round btn-primary btn-lg" onclick="btnon()">On</button></td>
 										<td></td>
 									</tr>
 									<tr>
-										<td><button type="button" class="btn btn-round btn-success btn-lg">B</button></td>
+										<td><button type="button" class="btn btn-round btn-success btn-lg">led</button></td>
 										<td>
-											<table> <tr>
+											<button type="button" class="btn btn-round btn-default btn-lg">-</button>
+											<!--<table> <tr>
 											<td valign="top"> <form action="" method="post" name="btnon">
-												<button type="submit" class="btn btn-round btn-default btn-sm" id="btnon">on</button>
+												<button type="submit" class="btn btn-round btn-default btn-sm" id="btnon">-</button>
 											</form> </td>
 											<td valign="top"> <form action="" method="post" name="btnoff">
-												<button type="submit" class="btn btn-round btn-default btn-sm" id="btnoff">off</button>
+												<button type="submit" class="btn btn-round btn-default btn-sm" id="btnoff">-</button>
 											</form> </td>
-											</tr> </table>
+											</tr> </table>-->
 										</td>
 										<td><button type="button" class="btn btn-round btn-warning btn-lg">C</button></td>
 									</tr>
 									<tr>
 										<td></td>
-										<td><button type="button" class="btn btn-round btn-danger btn-lg">D</button></td>
+										<td><button type="button" class="btn btn-round btn-danger btn-lg" onclick="btnoff()">Off</button></td>
 										<td></td>
 									</tr>
 								</tbody>
