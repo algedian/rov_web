@@ -2,7 +2,7 @@ import serial
 import time
 import sys
 
-ser = serial.Serial('/dev/ttyACM0', 9600)
+ser = serial.Serial('/dev/ttyUSB0', 9600)
 led_status = 0
 
 def led_toggle():

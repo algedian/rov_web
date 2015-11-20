@@ -5,8 +5,11 @@
 }
 
 .btn-round.btn-lg{
-	width: 60px;
-	height: 60px;
+	width: 48px;
+	height: 48px;
+	font-size: 15px;
+	text-align: center;
+	padding: 5px 10px;
 }
 
 .btn-round.btn-sm{
@@ -17,4 +20,10 @@
 .btn-round.btn-xs{
 	width: 24px;
 	height: 24px;
+}
+
+#nemo{
+	border: solid;
+	border-color: gray;
+	border-width: 5px;
 }
