@@ -76,6 +76,32 @@ def goright():
 	ser.write("m116")
 	ser.close()
 	return "go right complete"
+
+@app.route('/goup')
+def goup():	
+	print("go up")
+	ser = serial.Serial('/dev/ttyUSB0', 9600)
+	
+	#ser = serial.Serial('/dev/ttyACM0, 9600)
+	ser.write("m141234")
+	#ser2 = serial.Serial('/dev/ttyACM1, 9600)
+	#ser2.write("m0256")
+	ser.close()
+	#ser2.close()
+	return "go up return"
+
+@app.route('/godown')
+def godown():
+	print("go down")
+	ser = serial.Serial('/dev/ttyUSB0', 9600)
+	
+	#ser = serial.Serial('/dev/ttyACM0, 9600)
+	ser.write("m241234")
+	#ser2 = serial.Serial('/dev/ttyACM1, 9600)
+	#ser2.write("m0256")
+	ser.close()
+	#ser2.close()
+	return "go down return"
 	
 @app.route('/motorstop')
 def motorstop():

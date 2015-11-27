@@ -37,26 +37,26 @@
 							<table>
 								<tr>
 									<td></td>
-									<td><button type="button" class="btn btn-default btn-lg glyphicon glyphicon-arrow-up"></button></td>
+									<td><button type="button" class="btn btn-default btn-lg glyphicon glyphicon-arrow-up" onclick="gostraight()"></button></td>
 									<td></td>
 								</tr>
 								<tr>
-									<td><button type="button" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-arrow-left"></span></button></td>
-									<td><button type="button" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-stop"></span></button></td>
-									<td><button type="button" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-arrow-right"></span></button></td>
+									<td><button type="button" class="btn btn-default btn-lg" onclick="goleft()"><span class="glyphicon glyphicon-arrow-left"></span></button></td>
+									<td><button type="button" class="btn btn-default btn-lg" ><span class="glyphicon glyphicon-stop"></span></button></td>
+									<td><button type="button" class="btn btn-default btn-lg" onclick="goright()"><span class="glyphicon glyphicon-arrow-right"></span></button></td>
 								</tr>
 								<tr>
 									<td></td>
-									<td><button type="button" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-arrow-down"></span></button></td>
+									<td><button type="button" class="btn btn-default btn-lg" onclick="goback()"><span class="glyphicon glyphicon-arrow-down"></span></button></td>
 									<td></td>
 								</tr>
 							</table
 						</td>
 						<td>
 							<table><tbody>
-								<tr><td><button type="button" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-cloud-upload"></span></button></td></tr>
+								<tr><td><button type="button" class="btn btn-default btn-lg" onclick="goup()"><span class="glyphicon glyphicon-cloud-upload"></span></button></td></tr>
 								<tr><td>&nbsp;</td></tr>
-								<tr><td><button type="button" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-cloud-download"></span></button></td></tr>
+								<tr><td><button type="button" class="btn btn-default btn-lg" onclick="godown()"><span class="glyphicon glyphicon-cloud-download"></span></button></td></tr>
 							</tbody></table>
 						</td>
 						<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
@@ -78,7 +78,7 @@
 									</tr>
 									<tr>
 										<td></td>
-										<td><button type="button" class="btn btn-round btn-danger btn-lg" id="camoff"onclick="camoff()">CAM<br>off</button></td>
+										<td><button type="button" class="btn btn-round btn-danger btn-lg" id="camoff" onclick="camoff()">CAM<br>off</button></td>
 										<td></td>
 									</tr>
 								</tbody>

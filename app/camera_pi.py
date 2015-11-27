@@ -3,17 +3,15 @@ import io
 import threading
 import picamera
 
-
-
 class Camera(object):
     thread = None  # background thread that reads frames from camera
     frame = None  # current frame is stored here by background thread
     last_access = 0  # time of last client access to the camera
-    init_complete = None
 	
-    def initialize(self):
-        if Camera.thread is None:
+    def initialize(self):		
+        if Camera.thread is None:			
             # start background frame thread
+            #print("cam thread is none")
             Camera.thread = threading.Thread(target=self._thread)
             Camera.thread.start()
 
@@ -22,16 +20,14 @@ class Camera(object):
                 time.sleep(0)
 
     def get_frame(self):
-        Camera.last_access = time.time()
-        if Camera.init_complete is None:
-			self.initialize()
-			init_complete = 1
-        return self.frame
+	Camera.last_access = time.time()
+	self.initialize()
+	return self.frame
 
     @classmethod
     def _thread(cls):
         with picamera.PiCamera() as camera:
-            # camera setup
+			# camera setup
             camera.resolution = (480, 360)
             camera.hflip = True
             camera.vflip = True
@@ -43,6 +39,7 @@ class Camera(object):
             stream = io.BytesIO()
             for foo in camera.capture_continuous(stream, 'jpeg',
                                                  use_video_port=True):
+                #print("for foo")
                 # store frame
                 stream.seek(0)
                 cls.frame = stream.read()
@@ -53,11 +50,7 @@ class Camera(object):
 
                 # if there hasn't been any clients asking for frames in
                 # the last 10 seconds stop the thread
-                if time.time() - cls.last_access > 5:
-                    print "terminate?"
+                if time.time() - cls.last_access > 5:					
+                    print("terminate")                    
                     break
         cls.thread = None
-
-	
-	def stream_stop():
-		self.thread.stop()
