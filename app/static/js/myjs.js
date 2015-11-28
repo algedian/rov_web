@@ -7,7 +7,8 @@ function camoff(){
 }
 
 function camon(){
-	var img = $('#nemo')[0]
+	//alert("camon");
+	var img = $('#nemo')[0];
 	img.src='/video_feed'
 }
 
@@ -19,8 +20,8 @@ function ledon(){
 		success: function(){
 			
 		}
-	})
-		return false
+	});
+		
 	//});
 }
 
@@ -32,65 +33,61 @@ function ledoff(){
 		success: function(){
 			//alert("off");
 		}
-	})
-	return false
+	});
+	
 	//});
-
+}
 function gostraight(){
 	$.ajax({
 		url:'gostraight',
 		success: function(){
-			setTimeout(function(){
-				motorstop()
-			}, 1000);
+			/*setTimeout(function(){
+				motorstop();
+			}, 1000);*/
 		}
-		});
-	return false
+	});
 }
 
 function goback(){
 	$.ajax({
 		url:'goback',
 		success: function(){
-			setTimeout(function(){
+			/*setTimeout(function(){
 				motorstop()
-			}, 1000);
+			}, 1000);*/
 		}
-		});
-	return false
+	});
 }
 
 function goleft(){
 	$.ajax({
 		url:'goleft',
 		success: function(){
-			setTimeout(function(){
+			/*setTimeout(function(){
 				motorstop()
-			}, 1000);
+			}, 1000);*/
 		}
-		});
-	return false
+	});
 }
 
 function goright(){
 	$.ajax({
 		url:'goright',
 		success: function(){
-			setTimeout(function(){
+			/*setTimeout(function(){
 				motorstop()
-			}, 1000);
+			}, 1000);*/
 		}
-		});
-	return false
+	});
 }
 
 function goup(){
 	$.ajax({
 		url:'goup',
 		success: function(){
-			setTimeout(function(){
+			/*setTimeout(function(){
 				motorstop()
-			}, 1000);
+			}, 1000);*/
 		}
 		});
 	return false
@@ -100,22 +97,27 @@ function godown(){
 	$.ajax({
 		url:'godown',
 		success: function(){
-			setTimeout(function(){
+			/*setTimeout(function(){
 				motorstop()
-			}, 1000);
+			}, 1000);*/
 		}
-		});
-	return false
+	});
 }
 
-function motorstop(){
+function updownstop(){
 	$.ajax({
-		url:'motorstop',
+		url:'updownstop',
 		success: function(){
-			setTimeout(function(){
-				motorstop()
-			}, 1000);
+			
 		}
-		});
-	return false
+	});
+}
+
+function forbackstop(){
+	$.ajax({
+		url:'forbackstop',
+		success: function(){
+			
+		}
+	});
 }

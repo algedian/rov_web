@@ -26,8 +26,8 @@ def video_feed():
 @app.route('/ledon')
 def ledon():
 	print("ledon")
-	ser = serial.Serial('/dev/ttyUSB0', 9600)
-	#ser = serial.Serial('/dev/ttyACM0', 9600)
+	#ser = serial.Serial('/dev/ttyUSB0', 9600)
+	ser = serial.Serial('/dev/ttyACM0', 9600) #arduino due
 	ser.write("m117")
 	ser.close()
 	return "led on complete"
@@ -35,8 +35,8 @@ def ledon():
 @app.route('/ledoff')
 def ledoff():
 	print("ledoff")
-	ser = serial.Serial('/dev/ttyUSB0', 9600)
-	#ser = serial.Serial('/dev/ttyACM0', 9600)
+	#ser = serial.Serial('/dev/ttyUSB0', 9600)
+	ser = serial.Serial('/dev/ttyACM0', 9600) #arduino due
 	ser.write("m017")
 	ser.close()
 	return "led off complete"
@@ -44,8 +44,8 @@ def ledoff():
 @app.route('/gostraight')
 def gostraight():
 	print("go straight")
-	ser = serial.Serial('/dev/ttyUSB0', 9600)
-	#ser = serial.Serial('/dev/ttyACM0', 9600)
+	#ser = serial.Serial('/dev/ttyUSB0', 9600)
+	ser = serial.Serial('/dev/ttyACM0', 9600) #arduino due
 	ser.write("m1256")
 	ser.close()
 	return "go straight complete"
@@ -53,8 +53,8 @@ def gostraight():
 @app.route('/goback')
 def goback():
 	print("go back")
-	ser = serial.Serial('/dev/ttyUSB0', 9600)
-	#ser = serial.Serial('/dev/ttyACM0', 9600)
+	#ser = serial.Serial('/dev/ttyUSB0', 9600)
+	ser = serial.Serial('/dev/ttyACM0', 9600) #arduino due
 	ser.write("m2256")
 	ser.close()
 	return "go back complete"
@@ -62,8 +62,8 @@ def goback():
 @app.route('/goleft')
 def goleft():
 	print("go left")
-	ser = serial.Serial('/dev/ttyUSB0', 9600)
-	#ser = serial.Serial('/dev/ttyACM0', 9600)
+	#ser = serial.Serial('/dev/ttyUSB0', 9600)
+	ser = serial.Serial('/dev/ttyACM0', 9600) #arduino due
 	ser.write("m115")
 	ser.close()
 	return "go left complete"
@@ -71,8 +71,8 @@ def goleft():
 @app.route('/goright')
 def goright():
 	print("go right")
-	ser = serial.Serial('/dev/ttyUSB0', 9600)
-	#ser = serial.Serial('/dev/ttyACM0', 9600)
+	#ser = serial.Serial('/dev/ttyUSB0', 9600)
+	ser = serial.Serial('/dev/ttyACM0', 9600) #arduino due
 	ser.write("m116")
 	ser.close()
 	return "go right complete"
@@ -80,38 +80,51 @@ def goright():
 @app.route('/goup')
 def goup():	
 	print("go up")
-	ser = serial.Serial('/dev/ttyUSB0', 9600)
+	#ser = serial.Serial('/dev/ttyUSB0', 9600)
 	
-	#ser = serial.Serial('/dev/ttyACM0, 9600)
-	ser.write("m141234")
-	#ser2 = serial.Serial('/dev/ttyACM1, 9600)
-	#ser2.write("m0256")
-	ser.close()
-	#ser2.close()
+	#ser = serial.Serial('/dev/ttyACM0, 9600)	
+	#ser.write("m141234")	
+	#ser.close()
+	ser2 = serial.Serial('/dev/ttyACM1', 9600) #arduino uno
+	ser2.write("m141234")
+	ser2.close()
 	return "go up return"
 
 @app.route('/godown')
 def godown():
 	print("go down")
-	ser = serial.Serial('/dev/ttyUSB0', 9600)
+	#ser = serial.Serial('/dev/ttyUSB0', 9600)
 	
-	#ser = serial.Serial('/dev/ttyACM0, 9600)
+	ser = serial.Serial('/dev/ttyACM1', 9600) #arduino uno
 	ser.write("m241234")
-	#ser2 = serial.Serial('/dev/ttyACM1, 9600)
-	#ser2.write("m0256")
 	ser.close()
+	#ser2 = serial.Serial('/dev/ttyACM0, 9600)
+	#ser2.write("m0256")
 	#ser2.close()
 	return "go down return"
 	
-@app.route('/motorstop')
-def motorstop():
-	print("all motor stop")
-	ser = serial.Serial('/dev/ttyUSB0', 9600)
+@app.route('/updownstop')
+def updownstop():
+	print("updown motor stop")
+	#ser = serial.Serial('/dev/ttyUSB0', 9600)
 	
 	#ser = serial.Serial('/dev/ttyACM0, 9600)
-	ser.write("m041234")
-	#ser2 = serial.Serial('/dev/ttyACM1, 9600)
-	#ser2.write("m0256")
+	#ser.write("m041234")
+	#ser.close()
+	ser2 = serial.Serial('/dev/ttyACM1', 9600) #arduino uno
+	ser2.write("m041234")
+	ser2.close()
+	return "updown motor stopped"
+
+@app.route('/forbackstop')
+def forbackstop():
+	print("forback motor stop")
+	#ser = serial.Serial('/dev/ttyUSB0', 9600)
+	
+	ser = serial.Serial('/dev/ttyACM0', 9600) #arduino due
+	ser.write("m0256")
 	ser.close()
+	#ser2 = serial.Serial('/dev/ttyACM1', 9600) #arduino uno
+	#ser2.write("m0256")
 	#ser2.close()
-	return "all motor stopped"
+	return "forback motor stopped"
